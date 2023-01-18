@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -7,14 +7,22 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent {
-  recipes: Recipe[] = [
-    new Recipe('Bife', 'Completo e de respeito', 
-    'https://www.istoedinheiro.com.br/wp-content/uploads/sites/17/2019/08/din1135-sustenta5.jpg'),
-    new Recipe('Strogonoff', 'Simples e fácil', 
-    'https://img.cybercook.com.br/imagens/receitas/644/strogonoff-de-frango-1-840x480.jpg?q=75'),
-    new Recipe('Hambúrger', 'Saboroso e barato', 
-    'https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-hamburger:product-header-desktop?wid=829&hei=455&dpr=off')
+
+  @Output() recipeSelectedNotice = new EventEmitter<Recipe>();
+
+ recipes: Recipe[] = [
+    new Recipe('BigMac', 'O queridinho de todos', 
+    'https://www.farofamagazine.com.br/wp-content/uploads/2022/05/big.jpg'),
+    new Recipe('Big Tasty', 'Pra quando bater a Big Fome', 
+    'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kzXKz2eL/200/200/original?country=br'),
+    new Recipe('Chedar McMelt', 'O brasileirinho mais aclamado', 
+    'https://cache-backend-mcd.mcdonaldscupones.com/media/image/product$kfXu0yRK/200/200/original?country=br')
   ];
+
+  onRecipeSelected(recipe: Recipe){
+    this.recipeSelectedNotice.emit(recipe);
+
+  }
 
   constructor() {}
 }

@@ -9,10 +9,19 @@ import { Ingredient } from '../shared/ingredients.model';
 export class ShoppingListComponent {
 
   ingredients: Ingredient[] = [
-    new Ingredient('Bief', 2),
-    new Ingredient('Lettuce', 4),
-    new Ingredient('Potatos', 6)
+    new Ingredient('Bife', 2),
+    new Ingredient('Alface', 4),
+    new Ingredient('Queijo', 6),
+    new Ingredient('Cebola', 2),
+    new Ingredient('Molho especial', 4),
+    new Ingredient('Picles', 1),
+    new Ingredient('Tomate', 2),
+    new Ingredient('Bacon', 4),
   ];
+
+  onIngredientAdded(ingredient: Ingredient){
+    this.ingredients.push(ingredient);
+  }
 
   constructor(){}
 
