@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h1>{{ recipe.name }}</h1>
+        <h1>{{ recipe.name }} <h6> ± {{recipe.kcal}}</h6> </h1>
     </div>
 </div>
 <div class="row">
@@ -17,21 +17,26 @@
                 Verificar opções <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#">Adicionar ingredientes ao seu {{recipe.name}}!</a></li>
+                <li><a (click)="onAddToShoppingList(recipe.ingredients)" style="cursor: pointer;">Adicionar ingredientes do seu {{recipe.name}} a lista de compras!</a></li>
                 <li><a href="#">Editar Receita</a></li>
                 <li><a href="#">Deletar sugestão</a></li>
             </ul>
         </div>
     </div>
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-xs-12">
         <hr>
         {{recipe.description}}
     </div>
-</div>
+</div> -->
 <div class="row">
     <div class="col-xs-12">
-        {{recipe.kcal}}
+        <ul class="list-group">
+            <li class="list-group-item"
+            *ngFor="let ingredient of recipe.ingredients">
+             {{ingredient.name}} - {{ingredient.amount}}
+             </li>
+        </ul>
     </div>
 </div>
