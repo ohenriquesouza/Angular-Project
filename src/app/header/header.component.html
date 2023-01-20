@@ -2,19 +2,19 @@
     <div class="container">
         <div class="navbar-header">
             <img class="pull-left" src="https://www.logo.wine/a/logo/McDonald's/McDonald's-Logo.wine.svg" alt="Logo" style="max-height: 50px;">
-            <a href="#" class="navbar-brand">MacCardápio online</a>
+            <a style="cursor: pointer;" class="navbar-brand">MacCardápio online</a>
         </div>
         <div class="navbar-default">
             <ul class="nav navbar-nav">
-                <li><a href="#" (click)="onSelect('recipe')">Mais pedidos</a></li>
-                <li><a href="#"(click)="onSelect('shopping-list')">Monte o seu</a></li>
+                <li routerLinkActive="active" ><a routerLink="/recipes">Mais pedidos</a></li>
+                <li routerLinkActive="active" ><a routerLink="/shopping-list">Monte o seu</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown>
-                    <a href="#" class="dropdown-toggle" role="button">Opções <span class="caret"></span></a>
+                    <a style="cursor: pointer;" class="dropdown-toggle" role="button">Opções <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Salvar informações</a></li>
-                        <li><a href="#">Buscar dados</a></li>
+                        <li><a style="cursor: pointer;">Salvar informações</a></li>
+                        <li><a style="cursor: pointer;">Buscar dados</a></li>
                      </ul>
                 </li>
             </ul>

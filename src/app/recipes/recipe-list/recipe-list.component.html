@@ -1,12 +1,16 @@
 <div class="row">
     <div class="col-xs-12">
-        <button type="button" class="btn btn-success">Fazer pedido</button>
+        <button type="button" class="btn btn-success" (click)="onNewRecipe()">Fazer pedido</button>
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-xs-12">
         <app-recipe-item
-        *ngFor="let recipeElement of recipes" [recipe]="recipeElement"></app-recipe-item>
+        *ngFor="let recipeElement of recipes; let i = index" 
+        [recipe]="recipeElement"
+        [index]="i"></app-recipe-item>           
     </div>
 </div>
+
+<!-- nao entendi o motivo de nao poder usar "id" para acompanhar o valor de 'i' durante o loop -->
