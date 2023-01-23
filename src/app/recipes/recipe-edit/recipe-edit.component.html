@@ -1,1 +1,125 @@
-<p>recipe-edit works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <button
+                    type="submit"
+                    class="btn btn-success"
+                    style="margin-inline: 5px"
+                    [disabled]="!recipeForm.valid">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
+                        <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
+                      </svg>
+                        Salvar
+                    </button>
+                    <button
+                    type="button"
+                    class="btn btn-danger"
+                    style="margin-inline: 5px"
+                    (click)="onCancel()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                      </svg>
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input
+                        type="text"
+                        id="name"
+                        formControlName="name"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="imagePath">URL imagem</label>
+                        <input
+                        type="text"
+                        id="imagePath"
+                        formControlName="imagePath"
+                        class="form-control"
+                        #imagePath>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                  <img [src]="imagePath.value" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="kcal">Kcal</label>
+                        <input
+                        type="text"
+                        id="kcal"
+                        formControlName="kcal"
+                        class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="descricao">Descrição</label>
+                        <textarea
+                        type="text"
+                        id="descricao"
+                        formControlName="description"
+                        class="form-control"
+                        rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="ingredients">
+                    <div 
+                    class="row"
+                    *ngFor="let ingredientControl of getControls(); let i = index"
+                    [formGroupName]="i">
+                        <div class="col-xs-8">
+                            <input
+                            type="text"
+                            style="padding: 4px; margin-top: 3px;"
+                            class="form-control"
+                            formControlName="name">
+                        </div>
+                        <div class="col-xs-2">
+                            <input
+                            type="number"
+                            style="padding: 4px; margin-top: 3px;"
+                            class="form-control"
+                            formControlName="amount">
+                        </div>
+                        <div class="col-xs-2">
+                          <button 
+                          type="button"
+                          (click)="onDeleteIngredient(i)"
+                          class="btn btn-danger">X</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button 
+                            type="button" 
+                            (click)="onAddIngredients()" 
+                            class="btn btn-success">Adicionar ingredientes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
