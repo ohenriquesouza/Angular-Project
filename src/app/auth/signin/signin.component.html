@@ -3,16 +3,18 @@
         <h4> Bom te ver por aqui! <small class="text-muted">Insira seus dados.</small> </h4>
         <hr>
         <form (ngSubmit)="onSignin(f)" #f="ngForm">
+          <ng-template [ngIf]="!authService.isAuth()">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" ngModel class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input placeholder="Mínimo de 6 caracteres" type="password" id="password" name="password" 
+                <input placeholder="Mínimo de 6 caracteres" type="password" id="password" name="password"
                 ngModel minlength="6" ngModel class="form-control" required>
             </div>
             <button class="btn btn-primary" type="submit" [disabled]="!f.valid" >Login</button>
+          </ng-template>
         </form>
     </div>
 </div>

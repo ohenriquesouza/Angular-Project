@@ -17,10 +17,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class RecipeDetailComponent implements OnInit {
  recipe!: Recipe;
  id!: number;
+  dataStorageService: any;
 
   constructor(private router: Router, private routeA: ActivatedRoute,
      private recipeService: RecipeService,
-      private slService: ShoppingListService, 
+      private slService: ShoppingListService,
       private route: ActivatedRoute){}
 
   ngOnInit(){
@@ -44,6 +45,13 @@ export class RecipeDetailComponent implements OnInit {
 
   onRemoveRecipe(){
     this.recipeService.deleteRecipe(this.id);
-    this.router.navigate(['/recipes'], {relativeTo: this.route});
+
+    this.dataStorageService.storeRecipes().subscribe(
+      (response: any) => {
+        console.log(response);
+      }
+    );
+
+    this.router.navigate(['/recipes']);
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AuthService } from "../auth/auth.service";
+import { Recipe } from "../recipes/recipe.model";
 import { RecipeService } from "../recipes/recipe.service";
 
 @Injectable()
@@ -16,14 +17,14 @@ export class DataStorageService {
 
     getRecipes(){
         let token = this.authService.getToken();
-        this.http.get('https://pdcase-ng-http-default-rtdb.firebaseio.com/recipes.json?auth='+ token).subscribe(
-            (response: any) => {
-                let recipeJson = JSON.stringify(response); // <-- Pega todo o conteudo e transforma em string
-                const recipes = JSON.parse(recipeJson); // <-- Pega a string e transforma em .json()
-                this.recipeService.setRecipes(recipes); // <-- Finalmente, passa como .json()
-             }
+        this.http.get<Recipe[]>('https://pdcase-ng-http-default-rtdb.firebaseio.com/recipes.json?auth='+ token)
+        .subscribe(
+          (recipes) => {
+            this.recipeService.setRecipes(recipes);
+            console.log(recipes);
+          }
         );
-          
+
     }
 
     // OLD VERSION
@@ -35,10 +36,10 @@ export class DataStorageService {
     //     }
     // );
 
-    //ANOTHER 
+    //ANOTHER
     // this.http.get<Recipe[]>('https://pdcase-ng-http-default-rtdb.firebaseio.com/recipes.json?auth='+ token).subscribe(
     //     (recipes) => {
     //        this.recipeService.setRecipes(recipes);
     //     }
-    // ); 
+    // );
 }
