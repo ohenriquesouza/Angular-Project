@@ -7,7 +7,7 @@ import { PagenotfoundComponent } from "./pagenotfound/pagenotfound.component";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 
 const appRoutes: Routes = [
-    {path: '', redirectTo: '/signin', pathMatch: 'full'}, //<-- pathMatch previne erros vinculados a paginas incompletas
+    {path: '', redirectTo: '/signup', pathMatch: 'full'}, //<-- pathMatch previne erros vinculados a paginas incompletas
     {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
     { path: 'signup', component: SignupComponent},
     { path: 'signin', component: SigninComponent },
