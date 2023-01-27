@@ -7,10 +7,11 @@ import { RecipesStartComponent } from "./recipes-start/recipes-start.component";
 import { RecipesComponent } from "./recipes.component";
 
 const recipesRoutes: Routes = [
-    {path: 'recipes', canActivate: [AuthGuard],component: RecipesComponent, children: [{path: '', component: RecipesStartComponent},
-    {path: 'new', component: RecipeEditComponent},
-    {path: ':id', component: RecipeDetailComponent},
-    {path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard]}]},
+  {path: '', redirectTo: '/signup', pathMatch: 'full'}, //<-- pathMatch previne erros vinculados a paginas incompletas
+  {path: 'recipes', canActivate: [AuthGuard],component: RecipesComponent, children: [{path: '', component: RecipesStartComponent},
+  {path: 'new', component: RecipeEditComponent},
+  {path: ':id', component: RecipeDetailComponent},
+  {path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard]}]},
 ]
 
 @NgModule({
