@@ -3,15 +3,23 @@
         <h4> Bem-vindo! <small class="text-muted">Realize seu cadastro.</small> </h4>
         <hr>
         <form (ngSubmit)="onSignUp(f)" #f="ngForm">
+          <!-- <div class="form-group">
+                <label for="Name">Nome</label>
+                <input type="text" id="Name" name="Name" ngModel class="form-control" required>
+            </div> -->
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" ngModel class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input placeholder="Mínimo de 6 caracteres" type="password" id="password" name="password" 
+                <input placeholder="Mínimo de 6 caracteres" type="password" id="password" name="password"
                 ngModel minlength="6" class="form-control" required>
             </div>
+            <!-- <div class="form-group">
+              <label for="uid">ID</label>
+              <input type="number" id="uid" name="uid" ngModel class="form-control" required>
+          </div> -->
             <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Registrar-se</button>
         </form>
     </div>
