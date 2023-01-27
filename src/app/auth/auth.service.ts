@@ -9,9 +9,9 @@ export class AuthService{
 
 
     token!: string;
-    signupUser(email: string, password: string){
+    async signupUser(email: string, password: string){
         let auth = firebase.getAuth();
-        firebase.createUserWithEmailAndPassword(auth, email, password)
+        await firebase.createUserWithEmailAndPassword(auth, email, password)
         .catch(
             error => console.log(error)
         )
@@ -58,6 +58,11 @@ export class AuthService{
         firebase.signOut(auth);
         this.token = 'null';
         this.router.navigate(['signin']);
+    }
+
+    getuid(){
+      const auth = firebase.getAuth();
+      return auth.currentUser?.uid;
     }
 
 

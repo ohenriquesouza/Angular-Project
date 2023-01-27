@@ -1,35 +1,44 @@
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Ingredient } from '../shared/ingredients.model';
 
+@Injectable()
 export class ShoppingListService{
+
+  constructor(){}
+
   ingredientsChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
 
   private ingredients: Ingredient[] = [
-      new Ingredient('Bife', 2),
-      // new Ingredient('Alface', 4),
-      // new Ingredient('Queijo', 6),
-      // new Ingredient('Cebola', 2),
-      // new Ingredient('Molho especial', 4),
-      // new Ingredient('Picles', 1),
-      // new Ingredient('Tomate', 2),
-      // new Ingredient('Bacon', 4),
+      new Ingredient('Bife', 2)
   ];
 
   getIngredients(){
     return this.ingredients;
   }
 
+  setIngredients(ingredient: Ingredient[]){
+    this.ingredients = ingredient;
+
+    if(this.ingredients == null){
+      this.ingredients = [];
+    }
+
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
   addIngredient(ingredient: Ingredient){
     this.ingredients.push(ingredient);
+    this.ingredientsChanged.next(this.ingredients.slice())
   }
 
   addIngredients(ingredients: Ingredient[]){
     // for(let ingredient of ingredients){
     //     this.addIngredient(ingredient);
     // }
-
     this.ingredients.push(...ingredients);
+    this.ingredientsChanged.next(this.ingredients.slice())
   }
 
   getIngredient(index: number){

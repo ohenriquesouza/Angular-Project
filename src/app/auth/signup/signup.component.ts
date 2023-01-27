@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
 
 
 
-  onSignUp(form: NgForm){
+  async onSignUp(form: NgForm){
     const nome = form.value.name;
     const email = form.value.email;
     const password = form.value.password;
@@ -29,14 +29,17 @@ export class SignupComponent implements OnInit {
 
     let newUser = new Users(nome, email, uid, []);
 
-    this.dataStorage.storeNewUsers(newUser)
+    await this.authService.signupUser(email, password);
+
+    let userToken = this.authService.getuid();
+
+    this.dataStorage.storeNewUsers(newUser, userToken)
     .subscribe(
       (response: any) => {
         console.log(response);
       }
     );
 
-    this.authService.signupUser(email, password);
   }
 
   //SEM O SUBSCRIBE NAO FUNCIONA ASSINADO: MAX
