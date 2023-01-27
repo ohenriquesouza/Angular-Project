@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { Users } from 'src/app/shared/user.model';
 import { AuthService } from '../auth.service';
@@ -12,7 +13,8 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit {
 
 
-  constructor(private authService: AuthService, private dataStorage: DataStorageService){}
+  constructor(private authService: AuthService, private dataStorage: DataStorageService
+    , private router: Router){}
 
 
   ngOnInit(){
