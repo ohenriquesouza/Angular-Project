@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { AuthService } from "../auth/auth.service";
 import { Recipe } from "../recipes/recipe.model";
 import { RecipeService } from "../recipes/recipe.service";
+import { Users } from "./user.model";
+
 
 @Injectable()
 export class DataStorageService {
@@ -13,6 +15,10 @@ export class DataStorageService {
         let token = this.authService.getToken();
         return this.http.put('https://pdcase-ng-http-default-rtdb.firebaseio.com/recipes.json?auth=' + token, this.recipeService
         .getRecipes());
+    }
+
+    storeNewUsers(user: Users){
+      return this.http.put('https://pdcase-ng-http-default-rtdb.firebaseio.com/users/' + user.uid +  '.json', user);
     }
 
     getRecipes(){
